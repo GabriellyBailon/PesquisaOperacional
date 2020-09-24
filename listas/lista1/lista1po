@@ -1,0 +1,198 @@
+#include <iostream>
+#include <locale.h>					//Para incluir símbolos, acentos e caractéres em Pt/BR
+#include <cstdlib>					//Para a Questão 3
+#include <ctime>					//Para a Questão 3
+#include <iomanip>					//Para a Questão 5
+#include <fstream>					//Para a Questão 5
+
+using namespace std;
+int main()
+{
+	setlocale(LC_ALL, "Portuguese");
+	
+	int opcao;
+	char resposta;
+	int vetor[10];
+	int matriz[10][10];
+	int tam = 10;
+	
+	unsigned seed = time(0);			//A "semente"/início começa em 0
+	srand(seed);
+	
+	cout<< ("Bem vindo(a) à resolução da lista 1 de exercícios de PO!") << endl;
+	
+	while (true){	
+		while(true)
+		{
+			cout << ("\nDigite o número do exercício que deseja ver resolvido [1 a 5]: ");
+			cin >> opcao;
+			cout << "\n";
+			
+			if (opcao >= 1 and opcao <= 5){
+				break;
+			}
+			else
+			{
+				cout << ("Número inválido! Tente novamente") << endl; 
+			}
+		}
+		if (opcao == 1)
+		{
+			cout << ("Questão 1");
+			cout <<("\nOlá, Mundo!") << endl;
+		}
+			
+        else if(opcao == 2)
+			{
+				cout << ("Questão 2") << endl;
+				for (int i=0; i< tam; i++)
+				{
+					cout << ("Digite um número para a posição ") << i+1 << " do vetor: " << endl;
+					cin >> vetor[i];
+				}
+				
+				cout << ("O vetor preenchido é: ");
+				for (int i=0; i<tam; i++)
+				{
+					cout << vetor[i] << " ";
+					 
+				}
+			}
+			
+         else if(opcao == 3)								//Questão 3
+		 	 {
+				cout<< ("Questão 3") << endl;
+			 
+				 for (int linha = 0; linha < tam; linha++)		//For que preenche
+				 {
+					for(int coluna = 0; coluna < tam; coluna++)
+					{
+						matriz[linha][coluna] = 1+ (rand()%10);	//Randomiza um número de 0 a 10
+		  	  	    }	 
+				 }
+				 
+				 for (int linha = 0; linha < tam; linha++)		//For que imprime
+				 {
+				 	for (int coluna = 0; coluna < tam; coluna++)
+					 {
+					 	cout << matriz[linha][coluna] << " ";
+					 }
+					 cout << "\n";
+				 }
+			 }
+		 
+		 else if(opcao == 4)							//Questão 4
+		 	 {
+				 cout << ("Questão 4") << endl;				
+				 
+				 for (int i = 0; i < tam; i++)				//Preenche o vetor de 10 posições
+				 {
+				 	vetor[i] = 1 + (rand() % 10);
+				 }
+			  
+	  	 	   	   int maior = vetor[0];					//Declara o menor e o maior como
+	  	 	   	   int menor = vetor[0];					//o primeiro valor antes dos testes
+	  	 	   	   
+				   for (int i = 0; i < tam; i++)			//Verifica o maior e menor valor do vetor
+				   {
+				   	if (vetor[i] > maior)
+					   {
+					   	maior = vetor[i];
+					   }
+					if (vetor[i] < menor)
+						{
+						menor = vetor[i];
+						}
+				   }
+				   
+				   	cout << ("\nOs valores no vetor são: ");		//Imprime o vetor
+					for (int i = 0; i<tam; i++)
+					{
+						cout << vetor[i] << " ";
+					}
+				   
+				   cout << ("\nO maior valor do vetor é: ") << maior << endl;	//Mostra o maior e o menor
+				   cout << ("E o menor valor é: ") << menor << endl;
+		 	 }
+
+			  else if(opcao == 5)
+			  {
+				  cout << ("Questão 5") << endl;
+				  
+				  int contador = 0;
+				  
+				  //Duas matrizes de 3x3 declaradas
+				  int matriz1[10][10];
+				  int matriz2[10][10];
+				  int matrizsoma[10][10];
+				  
+				  //Variáveis que irão receber linha e coluna
+				  int l = 10;
+			      int c = 10;
+				  
+				  //Declara fluxo de entrada
+				  ifstream learquivo;
+				  
+				  //Abre o arquivo
+				  learquivo.open("arquivoquestao5.txt");
+
+				  
+				  for (int i= 0; i < l; i++)		//For que lê a primeira matriz do arquivo .txt
+				 {
+					for(int j = 0; j < c; j++)
+					{
+						//Lê os arquivos do txt e passa para a matriz
+						learquivo >> matriz1[i][j];
+						
+						contador ++;
+				  
+					}
+				 }
+				 
+				 if (contador == 100)
+				 {
+				 	  for (int i= 0; i < l; i++)		//For que lê a segunda matriz do arquivo .txt
+						{
+							for(int j = 0; j < c; j++)
+							{
+								//Lê os arquivos do txt e passa para a matriz
+								learquivo >> matriz2[i][j];
+						
+								contador ++;
+				  	  	  	  }
+					}
+				 	
+				 } 	
+				  
+				   for (int i= 0; i < l; i++)		//For que soma as duas matrizes
+				 {
+					for(int j = 0; j < c; j++)
+					{
+						matrizsoma[i][j]= matriz1[i][j] + matriz2[i][j];
+				  
+					}
+				 }
+				  				 	
+				  
+				   for (int i= 0; i < l; i++)		//For que imprime a matriz soma das duas matrizes
+				 {
+					for(int j = 0; j < c; j++)
+					{
+						//Imprime a matriz lida e armazenada acima
+						cout << matrizsoma[i][j] << " ";
+				  
+					}
+					cout << endl;
+				 }	  
+  	  	  	  }
+		
+		cout << ("\nDeseja continuar? [S/N]") << endl;
+		cin >> resposta;
+		if (resposta == 'N' or resposta == 'n'){
+			break;
+		}
+		
+	}
+	
+	return 0;
+}
