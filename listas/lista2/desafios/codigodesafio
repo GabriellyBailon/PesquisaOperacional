@@ -1,0 +1,160 @@
+#include <iostream>
+#include <iomanip>			//Biblioteca necessária para a leitura
+#include <fstream>			//Biblioteca necessária para a leitura
+#include <stdlib.h>
+#include <locale.h>
+
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "Portuguese");
+	
+	int opcao = 0;
+	char resposta = 'S';
+	
+	
+	while (true)
+	{
+		
+		while (true)
+		{
+			cout << ("Qual o número do desafio que você deseja ver resovido?[Somente o 1 está pronto]") << endl;
+			cin >> opcao;
+			
+			if (opcao >= 1 and opcao <= 2)
+			{
+				break;
+			}
+			else
+			{
+				   cout << ("Opção inválida! Tente novamente.") << endl;	
+			}
+		}	
+	
+			
+		
+		if (opcao == 1)
+		{
+			cout << ("Desafio 1 ") << endl;
+			
+			int matriz[4][4];
+			int teste;
+			int contcoordenada;
+			int soma = 0;
+
+
+			
+			int linha = 4;
+			int coluna = 4;
+			
+			//Leitura do arquivo
+			ifstream learquivo;
+			learquivo.open("desafio1.txt");
+			
+			//Passagem dos dados do arquivo para a matriz
+			for (int i = 0; i < linha; i++)
+			{
+				for (int j = 0; j < coluna; j++)
+				{
+					learquivo >> matriz[i][j];
+				}
+			}
+			
+				
+			cout << ("Quantas coordenadas deseja inserir? ") << endl;
+			cin >> contcoordenada;
+			int vetor [contcoordenada];
+			
+			
+			// Preenche o vetor com as coordenadas desejadas
+			for (int cont = 0; cont < contcoordenada; cont++)
+			{	
+				while(true)
+				{
+					if (cont == 0)
+					{
+						cout << ("Qual a coordenada de onde deseja começar? ") << endl;
+					}
+					
+					else
+					{	
+						cout << ("Qual a coordenada do próximo local? (Partindo do local anteriormente indicado)") << endl;
+					}
+					
+					cin >> teste;
+					if (teste >=0 and teste <=3)
+					{
+						vetor[cont]= teste;
+						break;
+					}
+					else
+					{
+						cout << ("Coordenada inválida! Digite um número entre 0 e 3") << endl;
+					}
+				}
+			
+			}
+			
+			
+			
+			// Faz a soma das coordenadas
+			for (int c = 0; c < (contcoordenada -1); c++)
+			{
+				int linha = vetor[c];
+				int coluna = vetor[(c+1)];
+				soma += matriz[linha][coluna];
+ 
+			}
+			
+			cout << "\n" << ("O custo do intinerário digitado é de ") << soma << endl;
+		
+			//FIM QUESTÃO 1	
+			
+			
+		}
+		
+		else if(opcao == 2)
+		{
+			cout << ("Desafio 2") << endl;
+			
+			char letra;
+			
+			while(true)
+			{
+				cout << ("Qual a letra resolvida do exercício você deseja ver? ") << endl;
+				cin >> letra;
+				
+				if (letra == 'a' or letra == 'b' or letra == 'c' or letra == 'd' or letra == 'e' or letra == 'f' or letra == 'g' or letra == 'h')
+				{
+					break;
+				}
+				else
+				{
+					cout << ("Opção inválida! Digite uma letra entre a e h.") << endl;
+				}
+			}
+			
+			if(letra == 'a')
+			{
+				cout << ("Desafio 2 - Letra a") << endl;
+				
+				//Fim do desafio 2a
+			}
+			
+		}
+		
+		//FIM DAS QUESTÕES
+		
+		cout << ("Deseja continuar? [S/N]") << endl;
+		cin >> resposta;
+		if (resposta == 'N' or resposta == 'n')
+		{
+			break;
+		}
+		
+	}
+	
+		
+	return 0;
+}
