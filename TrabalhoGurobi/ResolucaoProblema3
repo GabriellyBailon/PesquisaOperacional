@@ -1,0 +1,28 @@
+import gurobipy as gp
+
+
+
+#Criar o modelo
+m = gp.Model("Problema 3 - Programas de TV A e B")
+
+#Variáveis de decisão
+x1 = m.addVar()
+x2 = m.addVar()
+
+#Função objetivo
+m.setObjective(30000 * x1 + 10000 * x2, sense=gp.GRB.MAXIMIZE)
+
+#Restrições
+restricao1 = m.addConstr(20 * x1 + 10 * x2 <= 80)
+restricao2 = m.addConstr(x1 + x2 >= 5)
+
+#Resolução do modelo
+m.optimize()
+
+
+
+#Imprime as variáveis
+print("O programa A vai ser exibido por ", x1.X, " minutos")
+
+
+print("O programa B vai ser exibido por ", x2.X, " minutos")
