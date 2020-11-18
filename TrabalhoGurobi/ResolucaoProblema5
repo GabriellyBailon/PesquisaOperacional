@@ -1,0 +1,26 @@
+import gurobipy as gp
+
+
+#Modelo
+m = gp.Model("Problema 5 - Produção de P1 e P2 com 3 recursos")
+
+#Variáveis
+x1 = m.addVar()
+x2 = m.addVar()
+
+#Função Objetivo
+m.setObjective(120 * x1 + 150 * x2, sense = gp.GRB.MAXIMIZE)
+
+#Restrições
+restricao1 = m.addConstr(2 * x1 + 4 * x2 <= 100)
+restricao2 = m.addConstr(3 * x1 + 2 * x2 <= 90)
+restricao3 = m.addConstr(5 * x1 + 3 * x2 <= 120)
+
+#Resolve o modelo
+m.optimize()
+
+
+print(f"O número de P1 a ser produzido será de {x1.X:.1f} unidades")
+print(f"O número de P2 a ser produzido será de {x2.X:.1f} unidades")
+
+
