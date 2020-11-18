@@ -7,4 +7,7 @@ e solver Gurobi instalado no Anaconda
 
 Utilizando o Sistema Operacional Windows 10 64 bits
 
+Há um arquivo na pasta chamado LinksYoutube com os links para os vídeos requeridos 
+na resolução do trabalho.
+
 
