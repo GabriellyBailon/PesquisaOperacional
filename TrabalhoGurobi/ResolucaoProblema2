@@ -1,0 +1,24 @@
+import gurobipy as gp
+
+#Criar o modelo
+m = gp.Model("Problema 2 - Produtos P1 e P2")
+
+
+#Variaveis
+x1 = m.addVar()
+x2 = m.addVar()
+
+#Função Ojetivo
+m.setObjective(100 * x1 + 150 * x2, sense=gp.GRB.MAXIMIZE)
+
+#Restrições
+restricao1 = m.addConstr(2 * x1 + 3 * x2 <= 120)
+restricao2 = m.addConstr(x1 <= 40)
+restricao3 = m.addConstr(x2 <= 30)
+
+#Resolução do Modelo
+m.optimize()
+
+
+print("Serão produzidos ", x1.X, " unidades de P1")
+print("Serão produzidos ", x2.X, " unidades de P2")
